@@ -34,7 +34,7 @@ stages:
     - task: Docker@2
       displayName: Build and Push Docker Image
       inputs:
-        containerRegistry: 'ACR-MyEcommerce'
+        containerRegistry: 'my-newEcommerce'
         repository: 'simpleapi'
         command: 'buildAndPush'
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
