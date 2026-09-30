@@ -1,0 +1,44 @@
+trigger:
+- main
+
+variables:
+  imageRepository: 'simpleapi'
+  tag: '$(Build.BuildId)'
+
+stages:
+
+- stage: Build
+  displayName: Build and Push Image
+
+  jobs:
+
+  - job: DockerBuild
+
+    pool:
+      vmImage: ubuntu-latest
+
+    steps:
+
+    - checkout: self
+
+    # Verify Dockerfile exists
+    - bash: |
+        echo "Current directory:"
+        pwd
+
+        echo "Files:"
+        find $(Build.SourcesDirectory) -maxdepth 2 -type f
+      displayName: Verify files
+
+    # Build and push
+    - task: Docker@2
+      displayName: Build and Push Docker Image
+      inputs:
+        containerRegistry: 'ACR-MyEcommerce'
+        repository: 'simpleapi'
+        command: 'buildAndPush'
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        buildContext: '$(Build.SourcesDirectory)'
+        tags: |
+          $(tag)
+          latest
