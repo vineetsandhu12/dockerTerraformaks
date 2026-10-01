@@ -31,19 +31,7 @@ stages:
         find $(Build.SourcesDirectory) -maxdepth 2 -type f
       displayName: Verify files
 
-    - task: AzureCLI@2
-      displayName: Test Azure WIF
-      inputs:
-        azureSubscription: 'mynew-Connection'
-        scriptType: bash
-        scriptLocation: inlineScript
-        inlineScript: |
-          echo "Testing Azure login..."
-          az account show
-
-          echo "Testing ACR..."
-          az acr show --name $(acrName) --output table
-
+    
     # Build and push
     - task: Docker@2
       displayName: Build and Push Docker Image
