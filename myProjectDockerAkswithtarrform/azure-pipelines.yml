@@ -39,7 +39,7 @@ stages:
         containerRegistry: 'ACR-Connection'
         repository: 'simpleapi'
         command: 'buildAndPush'
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        dockerfile: '**/Dockerfile'
         buildContext: '$(Build.SourcesDirectory)'
         tags: |
           $(tag)
