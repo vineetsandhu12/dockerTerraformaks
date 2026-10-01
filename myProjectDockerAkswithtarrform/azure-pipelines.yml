@@ -4,6 +4,7 @@ trigger:
 variables:
   imageRepository: 'simpleapi'
   tag: '$(Build.BuildId)'
+  acrName: 'myEcommer'
 
 stages:
 
@@ -33,7 +34,7 @@ stages:
     - task: AzureCLI@2
       displayName: Test Azure WIF
       inputs:
-        azureSubscription: 'my-Ecommerce'
+        azureSubscription: 'mynew-Connection'
         scriptType: bash
         scriptLocation: inlineScript
         inlineScript: |
