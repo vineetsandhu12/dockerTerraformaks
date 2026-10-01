@@ -4,8 +4,8 @@ trigger:
 variables:
   imageRepository: 'simpleapi'
   tag: '$(Build.BuildId)'
-  acrName:'myecommer'
-  acrLoginServer:'myecommer.azurecr.io'
+  acrName: 'myecommer'
+  acrLoginServer: 'myecommer.azurecr.io'
 
 
 stages:
